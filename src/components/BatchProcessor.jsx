@@ -18,11 +18,16 @@ const BatchProcessor = () => {
 22.5726,88.3639
 12.9716,77.5946`;
 
-  const sampleDigiPinsData = `F98-JC3-27K4
-C92-832-7K56
-J32-745-6LMP
-K45-6LM-PTF9
-LMP-TFC-9832`;
+  const sampleDigiPinsData = `39J-438-TJC7
+4FK-595-8823
+4T3-84L-L5L9
+2TF-J7F-86MM
+4P3-JK8-52C9
+`;
+
+
+
+
 
   const parseInputData = () => {
     const lines = inputData.trim().split('\n').filter(line => line.trim() !== '');
@@ -340,18 +345,18 @@ LMP-TFC-9832`;
               <tbody className="divide-y divide-gray-200">
                 {results.map((result, index) => (
                   <tr key={index} className={result.status === 'error' ? 'bg-red-50' : 'hover:bg-gray-50'}>
-                    <td className="px-4 py-3 font-mono">{result.index}</td>
+                    <td className="px-4 py-3 font-mono text-gray-700">{result.index}</td>
                     {processingType === 'coordinates' ? (
                       <>
-                        <td className="px-4 py-3 font-mono">
+                        <td className="px-4 py-3 font-mono text-gray-700">
                           {result.lat && result.lon ? `${result.lat}, ${result.lon}` : '-'}
                         </td>
-                        <td className="px-4 py-3 font-mono">{result.digiPin || '-'}</td>
+                        <td className="px-4 py-3 font-mono text-gray-700">{result.digiPin || '-'}</td>
                       </>
                     ) : (
                       <>
-                        <td className="px-4 py-3 font-mono">{result.digiPin || '-'}</td>
-                        <td className="px-4 py-3 font-mono">
+                        <td className="px-4 py-3 font-mono text-gray-700">{result.digiPin || '-'}</td>
+                        <td className="px-4 py-3 font-mono text-gray-700">
                           {result.lat && result.lon ? `${result.lat}, ${result.lon}` : '-'}
                         </td>
                       </>

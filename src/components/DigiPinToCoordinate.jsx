@@ -200,7 +200,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
                 type="text"
                 value={coordinates.latitude}
                 readOnly
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold"
+                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold text-gray-700"
               />
             </div>
 
@@ -212,7 +212,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
                 type="text"
                 value={coordinates.longitude}
                 readOnly
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold"
+                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold text-gray-700"
               />
             </div>
           </div>

@@ -258,7 +258,7 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
           <label className="block text-sm font-semibold text-gray-700 mb-3">
             Generated DigiPin
           </label>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 text-gray-700">
             <input
               type="text"
               value={digiPin}
