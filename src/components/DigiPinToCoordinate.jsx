@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { FaSearch, FaSpinner, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaSearch, FaSpinner, FaMapMarkerAlt, FaTimes } from 'react-icons/fa';
 
 const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
   const [digiPin, setDigiPin] = useState('');
   const [coordinates, setCoordinates] = useState(null);
+  const [address, setAddress] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingAddress, setLoadingAddress] = useState(false);
   const [error, setError] = useState('');
 
   const validateDigiPin = (pin) => {
@@ -55,6 +57,24 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
     setError('');
   };
 
+  const fetchAddress = async (lat, lon) => {
+    setLoadingAddress(true);
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1`);
+      const data = await response.json();
+      if (data && data.display_name) {
+        setAddress(data.display_name);
+      } else {
+        setAddress('Address not found');
+      }
+    } catch (error) {
+      console.error('Error fetching address:', error);
+      setAddress('Unable to fetch address');
+    } finally {
+      setLoadingAddress(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -66,6 +86,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
 
     setLoading(true);
     setError('');
+    setAddress('');
 
     try {
       const response = await fetch(`/api/decode-digipin?digipin=${encodeURIComponent(digiPin)}`);
@@ -76,7 +97,14 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
       }
 
       setCoordinates(data);
-      onCoordinatesFound(data.latitude, data.longitude, digiPin);
+      
+      // Fetch address for the decoded coordinates
+      await fetchAddress(data.latitude, data.longitude);
+      
+      // Note: We'll pass the address in a timeout to ensure it's loaded
+      setTimeout(() => {
+        onCoordinatesFound(data.latitude, data.longitude, digiPin, address);
+      }, 100);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -87,29 +115,33 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
   const clearForm = () => {
     setDigiPin('');
     setCoordinates(null);
+    setAddress('');
     setError('');
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
-          <FaSearch className="text-green-600" />
+    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-3">
+          <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-2.5">
+            <FaSearch className="text-white text-lg" />
+          </div>
           <span>DigiPin to Coordinates</span>
         </h2>
         {digiPin && (
           <button
             onClick={clearForm}
-            className="text-gray-400 hover:text-gray-600 transition-colors text-sm"
+            className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100"
+            title="Clear form"
           >
-            Clear
+            <FaTimes />
           </button>
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="digipin" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="digipin" className="block text-sm font-semibold text-gray-700 mb-2">
             DigiPin Code
           </label>
           <input
@@ -118,7 +150,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
             value={digiPin}
             onChange={handleInputChange}
             placeholder="e.g., FC9-8J3-2K45"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent font-mono text-lg"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent font-mono text-lg transition-all"
             required
             maxLength={12} // XXX-XXX-XXXX format
           />
@@ -128,7 +160,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-sm text-red-600">{error}</p>
           </div>
         )}
@@ -136,7 +168,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
         <button
           type="submit"
           disabled={loading || !digiPin}
-          className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-lg hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2 font-medium"
         >
           {loading ? (
             <>
@@ -153,37 +185,52 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
       </form>
 
       {coordinates && (
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
-          <div className="flex items-center space-x-2 mb-3">
+        <div className="mt-6 p-5 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="flex items-center space-x-2 mb-4">
             <FaMapMarkerAlt className="text-blue-600" />
-            <span className="font-medium text-gray-900">Found Coordinates</span>
+            <span className="font-semibold text-gray-900">Found Coordinates</span>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Latitude
               </label>
               <input
                 type="text"
                 value={coordinates.latitude}
                 readOnly
-                className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md font-mono"
+                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Longitude
               </label>
               <input
                 type="text"
                 value={coordinates.longitude}
                 readOnly
-                className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md font-mono"
+                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold"
               />
             </div>
           </div>
+
+          {/* Address Display */}
+          {(address || loadingAddress) && (
+            <div className="mt-4 p-4 bg-white rounded-lg border border-blue-200">
+              <h4 className="text-sm font-semibold text-blue-800 mb-2">Address Information</h4>
+              {loadingAddress ? (
+                <div className="flex items-center space-x-2 text-blue-600">
+                  <FaSpinner className="animate-spin text-sm" />
+                  <span className="text-sm">Fetching address...</span>
+                </div>
+              ) : (
+                <p className="text-sm text-blue-700">{address}</p>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
