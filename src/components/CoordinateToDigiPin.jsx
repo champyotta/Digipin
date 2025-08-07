@@ -168,7 +168,7 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
               value={latitude}
               onChange={(e) => setLatitude(e.target.value)}
               placeholder="e.g., 28.6139"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-700 text-gray-700"
               required
             />
             <p className="text-xs text-gray-500 mt-1">Range: 2.5 to 38.5</p>
@@ -185,7 +185,7 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
               value={longitude}
               onChange={(e) => setLongitude(e.target.value)}
               placeholder="e.g., 77.2090"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-700 text-gray-700"
               required
             />
             <p className="text-xs text-gray-500 mt-1">Range: 63.5 to 99.5</p>

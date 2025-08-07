@@ -150,7 +150,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
             value={digiPin}
             onChange={handleInputChange}
             placeholder="e.g., FC9-8J3-2K45"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent font-mono text-lg transition-all"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-700 text-gray-700"
             required
             maxLength={12} // XXX-XXX-XXXX format
           />

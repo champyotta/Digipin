@@ -109,18 +109,18 @@ const MapWrapper = ({ center, zoom, marker, onMapClick }) => {
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <span>DigiPin Generated</span>
+            <span className="text-gray-700">DigiPin Generated</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span>Coordinates Found</span>
+            <span className="text-gray-700">Coordinates Found</span>
           </div>
         </div>
       </div>
       
       {/* Click instruction */}
       <div className="absolute top-4 left-4 bg-white bg-opacity-90 p-2 rounded shadow-md text-xs z-[1000]">
-        <span>💡 Click on the map to select coordinates</span>
+        <span className="text-gray-700">💡 Click on the map to select coordinates</span>
       </div>
     </div>
   );

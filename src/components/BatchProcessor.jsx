@@ -184,12 +184,12 @@ LMP-TFC-9832`;
             className={`p-4 rounded-lg border-2 transition-all ${
               processingType === 'coordinates'
                 ? 'border-blue-500 bg-blue-50 text-blue-700'
-                : 'border-gray-200 hover:border-gray-300'
+                : 'border-gray-200 hover:border-gray-300 text-gray-700'
             }`}
           >
             <h3 className="font-semibold mb-2">Coordinates → DigiPins</h3>
-            <p className="text-sm text-gray-600">Convert multiple coordinates to DigiPin codes</p>
-            <p className="text-xs text-gray-500 mt-1">Format: lat,lon (one per line)</p>
+            <p className="text-sm text-gray-700">Convert multiple coordinates to DigiPin codes</p>
+            <p className="text-xs text-gray-700 mt-1">Format: lat,lon (one per line)</p>
           </button>
           
           <button
@@ -202,12 +202,12 @@ LMP-TFC-9832`;
             className={`p-4 rounded-lg border-2 transition-all ${
               processingType === 'digipins'
                 ? 'border-blue-500 bg-blue-50 text-blue-700'
-                : 'border-gray-200 hover:border-gray-300'
+                : 'border-gray-200 hover:border-gray-300 text-gray-700'
             }`}
           >
             <h3 className="font-semibold mb-2">DigiPins → Coordinates</h3>
-            <p className="text-sm text-gray-600">Convert multiple DigiPin codes to coordinates</p>
-            <p className="text-xs text-gray-500 mt-1">Format: DigiPin (one per line)</p>
+            <p className="text-sm text-gray-700">Convert multiple DigiPin codes to coordinates</p>
+            <p className="text-xs text-gray-700 mt-1">Format: DigiPin (one per line)</p>
           </button>
         </div>
 
@@ -241,7 +241,7 @@ LMP-TFC-9832`;
                 ? 'Enter coordinates (lat,lon) one per line:\n28.6139,77.2090\n19.0760,72.8777\n...'
                 : 'Enter DigiPins one per line:\nF98-JC3-27K4\nM56L-MPT-FC98\n...'
             }
-            className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+            className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm placeholder:text-gray-700 text-gray-700"
           />
           
           {error && (
