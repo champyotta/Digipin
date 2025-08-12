@@ -223,6 +223,56 @@ const BatchProcessor = () => {
               Input Data ({processingType === 'coordinates' ? 'Coordinates' : 'DigiPins'})
             </label>
             <div className="space-x-2">
+              <label className="text-sm text-green-600 hover:text-green-700 font-medium cursor-pointer">
+                <input
+                  type="file"
+                  accept=".csv"
+                  style={{ display: 'none' }}
+                  onChange={async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    const text = await file.text();
+                    let lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+                    if (lines.length < 1) return;
+                    const header = lines[0].split(',').map(h => h.trim().toLowerCase());
+                    let newInput = '';
+                    if (processingType === 'coordinates') {
+                      const latIdx = header.indexOf('lat');
+                      const lonIdx = header.indexOf('lon');
+                      if (latIdx === -1 || lonIdx === -1) {
+                        setError('CSV must have columns: lat, lon');
+                        return;
+                      }
+                      for (let i = 1; i < lines.length; i++) {
+                        const row = lines[i].split(',');
+                        if (row.length > Math.max(latIdx, lonIdx)) {
+                          const lat = row[latIdx].trim();
+                          const lon = row[lonIdx].trim();
+                          if (lat && lon) newInput += `${lat},${lon}\n`;
+                        }
+                      }
+                    } else {
+                      const pinIdx = header.indexOf('digipin');
+                      if (pinIdx === -1) {
+                        setError('CSV must have column: digipin');
+                        return;
+                      }
+                      for (let i = 1; i < lines.length; i++) {
+                        const row = lines[i].split(',');
+                        if (row.length > pinIdx) {
+                          const pin = row[pinIdx].trim();
+                          if (pin) newInput += `${pin}\n`;
+                        }
+                      }
+                    }
+                    setInputData(newInput.trim());
+                    setResults([]);
+                    setError('');
+                    e.target.value = '';
+                  }}
+                />
+                Import CSV
+              </label>
               <button
                 onClick={loadSampleData}
                 className="text-sm text-blue-600 hover:text-blue-700 font-medium"
@@ -235,6 +285,7 @@ const BatchProcessor = () => {
               >
                 Clear All
               </button>
+              
             </div>
           </div>
           
