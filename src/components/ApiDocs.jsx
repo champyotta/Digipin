@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaCode, FaCopy, FaPlay, FaBook, FaKey, FaShield, FaRocket } from 'react-icons/fa';
+import { FaCode, FaCopy, FaPlay, FaBook, FaKey, FaShieldAlt, FaRocket } from 'react-icons/fa';
 
 const ApiDocs = () => {
   const [activeEndpoint, setActiveEndpoint] = useState('encode');
@@ -101,7 +101,7 @@ const ApiDocs = () => {
           
           <div className="bg-white rounded-xl p-6 border border-blue-200">
             <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-              <FaShield className="text-purple-600" />
+              <FaShieldAlt className="text-purple-600" />
             </div>
             <h4 className="font-semibold text-gray-900 mb-2">3. Handle Response</h4>
             <p className="text-sm text-gray-600">Process JSON responses in your application</p>

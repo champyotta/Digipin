@@ -1,6 +1,6 @@
 'use client';
 
-import { FaMapMarkerAlt, FaGithub, FaTwitter, FaLinkedin, FaHeart, FaShield, FaBook, FaEnvelope } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaGithub, FaTwitter, FaLinkedin, FaHeart, FaShieldAlt, FaBook, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -197,7 +197,7 @@ const Footer = () => {
             
             <div className="flex items-center space-x-6 text-xs text-gray-500">
               <div className="flex items-center space-x-1">
-                <FaShield className="text-green-500" />
+                <FaShieldAlt className="text-green-500" />
                 <span>Secure & Private</span>
               </div>
               <div className="flex items-center space-x-1">
