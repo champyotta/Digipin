@@ -168,7 +168,7 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
               value={latitude}
               onChange={(e) => setLatitude(e.target.value)}
               placeholder="e.g., 28.6139"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-700 text-gray-700"
+              className="input-modern"
               required
             />
             <p className="text-xs text-gray-500 mt-1">Range: 2.5 to 38.5</p>
@@ -185,7 +185,7 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
               value={longitude}
               onChange={(e) => setLongitude(e.target.value)}
               placeholder="e.g., 77.2090"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-700 text-gray-700"
+              className="input-modern"
               required
             />
             <p className="text-xs text-gray-500 mt-1">Range: 63.5 to 99.5</p>
@@ -240,7 +240,7 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
         <button
           type="submit"
           disabled={loading || !latitude || !longitude}
-          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2 font-medium"
+          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2 font-medium shadow-lg hover:shadow-xl btn-hover"
         >
           {loading ? (
             <>
@@ -263,11 +263,11 @@ const CoordinateToDigiPin = ({ onDigiPinGenerated, selectedCoords, onClearSelect
               type="text"
               value={digiPin}
               readOnly
-              className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono text-lg font-semibold text-center"
+              className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-xl font-mono text-lg font-semibold text-center shadow-sm"
             />
             <button
               onClick={copyToClipboard}
-              className="px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors flex items-center space-x-2"
+              className="px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl"
               title="Copy to clipboard"
             >
               <FaCopy className="text-sm" />

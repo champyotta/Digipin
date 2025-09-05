@@ -150,7 +150,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
             value={digiPin}
             onChange={handleInputChange}
             placeholder="e.g., FC9-8J3-2K45"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-700 text-gray-700"
+            className="input-modern"
             required
             maxLength={12} // XXX-XXX-XXXX format
           />
@@ -168,7 +168,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
         <button
           type="submit"
           disabled={loading || !digiPin}
-          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-lg hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2 font-medium"
+          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 px-6 rounded-xl hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2 font-medium shadow-lg hover:shadow-xl btn-hover"
         >
           {loading ? (
             <>
@@ -200,7 +200,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
                 type="text"
                 value={coordinates.latitude}
                 readOnly
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold text-gray-700"
+                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl font-mono font-semibold text-gray-700 shadow-sm"
               />
             </div>
 
@@ -212,7 +212,7 @@ const DigiPinToCoordinate = ({ onCoordinatesFound }) => {
                 type="text"
                 value={coordinates.longitude}
                 readOnly
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono font-semibold text-gray-700"
+                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl font-mono font-semibold text-gray-700 shadow-sm"
               />
             </div>
           </div>
