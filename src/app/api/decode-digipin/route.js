@@ -3,15 +3,21 @@ import { getLatLngFromDigiPin } from '@/lib/digipin';
 
 async function getAddressFromCoordinates(lat, lon) {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
     // Using OpenStreetMap Nominatim for reverse geocoding
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`,
       {
         headers: {
           'User-Agent': 'DigiPin-App'
-        }
+        },
+        signal: controller.signal
       }
     );
+    
+    clearTimeout(timeoutId);
     
     if (!response.ok) {
       return 'Address not available';
@@ -20,6 +26,9 @@ async function getAddressFromCoordinates(lat, lon) {
     const data = await response.json();
     return data.display_name || 'Address not available';
   } catch (error) {
+    if (error.name === 'AbortError') {
+      return 'Address lookup timed out';
+    }
     return 'Address not available';
   }
 }
