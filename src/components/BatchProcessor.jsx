@@ -297,7 +297,7 @@ const BatchProcessor = () => {
                 ? 'Enter coordinates (lat,lon) one per line:\n28.6139,77.2090\n19.0760,72.8777\n...'
                 : 'Enter DigiPins one per line:\nF98-JC3-27K4\nM56L-MPT-FC98\n...'
             }
-            className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm placeholder:text-gray-700 text-gray-700"
+            className="w-full h-32 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm placeholder:text-gray-400 text-gray-700 shadow-sm"
           />
           
           {error && (
@@ -310,7 +310,7 @@ const BatchProcessor = () => {
             <button
               onClick={processData}
               disabled={loading || !inputData.trim()}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+              className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center space-x-2 font-medium shadow-lg hover:shadow-xl btn-hover"
             >
               {loading ? (
                 <>
@@ -328,7 +328,7 @@ const BatchProcessor = () => {
             {results.length > 0 && (
               <button
                 onClick={downloadResults}
-                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors flex items-center space-x-2"
+                className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 flex items-center space-x-2 font-medium shadow-lg hover:shadow-xl"
               >
                 <FaDownload />
                 <span>Download CSV</span>
