@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaChartLine, FaMapMarkerAlt, FaUsers, FaGlobe, FaClock, FaTrendingUp, FaDownload } from 'react-icons/fa';
+import { FaChartLine, FaMapMarkerAlt, FaUsers, FaGlobe, FaClock, FaArrowUp, FaDownload } from 'react-icons/fa';
 
 const Analytics = () => {
   const [stats, setStats] = useState({
@@ -84,7 +84,7 @@ const Analytics = () => {
               <FaMapMarkerAlt className="text-blue-600 text-lg" />
             </div>
             <div className="text-green-500 text-sm font-medium flex items-center space-x-1">
-              <FaTrendingUp className="text-xs" />
+              <FaArrowUp className="text-xs" />
               <span>+12.5%</span>
             </div>
           </div>
@@ -100,7 +100,7 @@ const Analytics = () => {
               <FaChartLine className="text-green-600 text-lg" />
             </div>
             <div className="text-green-500 text-sm font-medium flex items-center space-x-1">
-              <FaTrendingUp className="text-xs" />
+              <FaArrowUp className="text-xs" />
               <span>+8.2%</span>
             </div>
           </div>
@@ -116,7 +116,7 @@ const Analytics = () => {
               <FaUsers className="text-purple-600 text-lg" />
             </div>
             <div className="text-green-500 text-sm font-medium flex items-center space-x-1">
-              <FaTrendingUp className="text-xs" />
+              <FaArrowUp className="text-xs" />
               <span>+5.7%</span>
             </div>
           </div>
@@ -132,7 +132,7 @@ const Analytics = () => {
               <FaClock className="text-orange-600 text-lg" />
             </div>
             <div className="text-green-500 text-sm font-medium flex items-center space-x-1">
-              <FaTrendingUp className="text-xs" />
+              <FaArrowUp className="text-xs" />
               <span>-15.3%</span>
             </div>
           </div>

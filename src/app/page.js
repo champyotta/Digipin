@@ -9,7 +9,7 @@ import BatchProcessor from '../components/BatchProcessor';
 import Analytics from '../components/Analytics';
 import ApiDocs from '../components/ApiDocs';
 import MapComponent from '../components/MapComponent';
-import { FaExchangeAlt, FaRocket, FaShield, FaGlobe, FaZap, FaUsers } from 'react-icons/fa';
+import { FaExchangeAlt, FaRocket, FaLock, FaGlobe, FaBolt, FaUsers } from 'react-icons/fa';
 
 export default function Home() {
   const [mapCenter, setMapCenter] = useState([20.5, 78.9]); // Center of India
@@ -55,7 +55,7 @@ export default function Home() {
       description: 'Convert coordinates to DigiPins in milliseconds with our optimized algorithm'
     },
     {
-      icon: FaShield,
+      icon: FaLock,
       title: 'Secure & Private',
       description: 'Your location data is processed securely without storing personal information'
     },
@@ -65,7 +65,7 @@ export default function Home() {
       description: 'Works worldwide with precise accuracy for any geographical location'
     },
     {
-      icon: FaZap,
+      icon: FaBolt,
       title: 'Batch Processing',
       description: 'Process thousands of coordinates at once with our powerful batch system'
     },
